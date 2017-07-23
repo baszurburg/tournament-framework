@@ -22,6 +22,9 @@ var keystone = require('keystone');
 var middleware = require('./middleware');
 var importRoutes = keystone.importer(__dirname);
 
+// Pass your keystone instance to the module
+var restful = require('restful-keystone')(keystone);
+
 // Common Middleware
 keystone.pre('routes', middleware.initLocals);
 keystone.pre('render', middleware.flashMessages);
@@ -43,4 +46,15 @@ exports = module.exports = function (app) {
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
 	// app.get('/protected', middleware.requireUser, routes.views.protected);
 
+	//Explicitly define which lists we want exposed: 
+	// docs: https://github.com/d-pac/restful-keystone
+	restful.expose({
+		Post: true,
+		User: {
+			show : ['email', 'isAdmin', 'name'],
+			filter : { isAdmin: false }
+		}
+	}).start();
+	
+	
 };
