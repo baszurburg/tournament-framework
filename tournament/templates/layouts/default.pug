@@ -13,7 +13,10 @@ html
 		link(rel="shortcut icon", href="/favicon.ico", type="image/x-icon")
 
 		//- Customise the stylesheet for your site by editing /public/styles/site.sass
-		link(href="/styles/site.css", rel="stylesheet")
+		//- link(href="/styles/site.css", rel="stylesheet")
+		link(href="/styles/bootstrap.min.css", rel="stylesheet")
+		link(href="/styles/mdb.min.css", rel="stylesheet")
+		link(href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css", rel="stylesheet")
 
 		//- This file provides the default styling for the KeystoneJS Content Editor
 		if user && user.canAccessKeystone
@@ -41,19 +44,16 @@ html
 			//- Customise your site's navigation by changing the navLinks Array in ./routes/middleware.js
 			//- ... or completely change this header to suit your design.
 
-			div(role="navigation").navbar.navbar-default
-				.container-fluid
-					.navbar-header
-						button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
-							span.sr-only Toggle navigation
-							span.icon-bar
-							span.icon-bar
-							span.icon-bar
-						a.navbar-brand(href='/') tournament
-					.collapse.navbar-collapse
-						ul.nav.navbar-nav.navbar-left
+			nav(role="navigation").navbar.navbar-toggleable-md.navbar-light.bg-fade
+				.container
+					button.navbar-toggler.navbar-toggler-right(type='button', data-toggle='collapse', data-target='#navbarNav3')
+						span.sr-only Toggle navigation
+						span.navbar-toggler-icon
+					a.navbar-brand(href='/') tournament
+					#navbarNav3.collapse.navbar-collapse
+						ul.navbar-nav.mr-auto
 							each link in navLinks
-								li(class=(section == link.key ? 'active' : null)): a(href=link.href)= link.label
+								li.nav-item(class=(section == link.key ? 'active' : null)): a.nav-link(href=link.href)= link.label
 						ul.nav.navbar-nav.navbar-right
 							if user
 								if user.canAccessKeystone
@@ -92,12 +92,22 @@ html
 		//- jQuery 1.11.3 is included by default, and required by both Bootstrap
 		//- and the KeystoneJS Content Editor. If you are not targeting IE8,
 		//- you can upgrade to 2.1.4 (also bundled) for better performance.
-		script(src='/js/jquery/jquery-1.11.3.min.js')
+		//- script(src='/js/jquery/jquery-1.11.3.min.js')
 
 		//- Customise which Bootstrap javascript files are served by including
 		//- them specifically here, instead of bootstrap-3.3.5.min.js
-		script(src='/js/bootstrap/bootstrap-3.3.5.min.js')
+		//- script(src='/js/bootstrap/bootstrap-3.3.5.min.js')
 
+		script(src='/js/lib/jquery-3.1.1.js')
+		script(src='/js/lib/tether.js')
+		script(src='/js/lib/bootstrap.js')
+		script(src='/js/lib/mdb.js')
+		//- <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+		// -<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+		//- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+		//- <script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.2/js/mdb.js"></script>	
+			
+			
 		//- The KeystoneJS Content Editor provides support for ks-editable data attributes,
 		//- which generate links to edit content for users who can access Keystone
 		if user && user.canAccessKeystone
