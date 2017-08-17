@@ -5,16 +5,21 @@ import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './layout/header/header.component';
-import { HomeComponent } from './home/home.component';
-import { SandboxComponent } from './sandbox/sandbox.component';
+import { HeaderComponent } from './layout/header';
+import { HomeComponent } from './home';
+import { SandboxComponent } from './sandbox';
+import { ArticlesComponent, ArticleService } from './articles';
+import { ArticleListComponent, ArticleListitemComponent } from './articles/article-list';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    SandboxComponent
+    SandboxComponent,
+    ArticlesComponent,
+    ArticleListComponent,
+    ArticleListitemComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +27,7 @@ import { SandboxComponent } from './sandbox/sandbox.component';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [ArticleService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
