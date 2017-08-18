@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
 import {Subscription} from 'rxjs/Subscription';
 import {ArticleService} from '../../articles';
-import {Article} from '../../models/article';
+import {Article} from '../article';
 
 @Component({
   selector: 'art-article-detail',

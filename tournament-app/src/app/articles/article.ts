@@ -13,8 +13,17 @@ export class Article {
   private _image?: any;
   private _content: IArticleContent;
   private _categories?: string[];
+  private _sortOrder: number;
 
   // getters and setters
+
+  get sortOrder(): number {
+    return this._sortOrder;
+  }
+
+  set sortOrder(value: number) {
+    this._sortOrder = value;
+  }
 
   get id(): string {
     return this._id;

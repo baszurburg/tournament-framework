@@ -1,7 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Http, Response, Headers} from '@angular/http'
 import {Observable} from 'rxjs/Observable';
-import {Article} from '../models/article';
+import {Article} from './article';
 
 
 // Import RxJs required methods

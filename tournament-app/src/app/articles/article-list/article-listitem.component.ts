@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Article} from '../../models/article';
+import {Article} from '../../articles';
 
 @Component({
   selector: 'art-article-listitem',
