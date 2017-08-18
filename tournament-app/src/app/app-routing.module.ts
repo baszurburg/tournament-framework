@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {HomeComponent} from './home/home.component';
-import {SandboxComponent} from './sandbox/sandbox.component';
+import {HomeComponent} from './home';
+import {SandboxComponent} from './sandbox';
+import {ArticleDetailComponent} from './articles/article-detail';
 
 const routes: Routes = [
   {
@@ -12,6 +13,10 @@ const routes: Routes = [
   {
     path: 'sandbox',
     component: SandboxComponent
+  },
+  {
+    path: 'article/:id',
+    component: ArticleDetailComponent
   }
 ];
 

@@ -8,8 +8,9 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './layout/header';
 import { HomeComponent } from './home';
 import { SandboxComponent } from './sandbox';
-import { ArticlesComponent, ArticleService } from './articles';
+import { ArticleService } from './articles';
 import { ArticleListComponent, ArticleListitemComponent } from './articles/article-list';
+import { ArticleDetailComponent } from './articles/article-detail/article-detail.component';
 
 @NgModule({
   declarations: [
@@ -17,9 +18,9 @@ import { ArticleListComponent, ArticleListitemComponent } from './articles/artic
     HeaderComponent,
     HomeComponent,
     SandboxComponent,
-    ArticlesComponent,
     ArticleListComponent,
-    ArticleListitemComponent
+    ArticleListitemComponent,
+    ArticleDetailComponent
   ],
   imports: [
     BrowserModule,

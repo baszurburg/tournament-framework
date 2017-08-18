@@ -5,7 +5,7 @@ interface IArticleContent {
 
 export class Article {
 
-  private _id: string;
+  _id: string;
   private _title: string;
   private _state: string;
   private _author: string;
@@ -70,7 +70,7 @@ export class Article {
 
   // Constructor
 
-  constructor(articleObj: any) {
+  constructor(articleObj: Article) {
     this.id = articleObj._id;
     this.title = articleObj.title;
     this.state = articleObj.state;

@@ -31,11 +31,26 @@ keystone.pre('render', middleware.flashMessages);
 
 // Import Route Controllers
 var routes = {
-	views: importRoutes('./views'),
+	views: importRoutes('./views')
 };
 
 // Setup Route Bindings
 exports = module.exports = function (app) {
+
+	'use strict';
+	
+	// Allow cross-domain requests (api only)
+	console.log('------------------------------------------------');
+	console.log('Notice: Enabling CORS for development.');
+	console.log('------------------------------------------------');
+	app.all('/api/*', function (req, res, next) {
+		res.header('Access-Control-Allow-Origin', '*');
+		res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+		res.header('Access-Control-Allow-Headers', '*');
+		next();
+	});
+
+	
 	// Views
 	app.get('/', routes.views.index);
 	app.get('/blog/:category?', routes.views.blog);
@@ -62,6 +77,5 @@ exports = module.exports = function (app) {
 	}).before({
 		User: middleware.requireUser
 	}).start();
-	
 	
 };

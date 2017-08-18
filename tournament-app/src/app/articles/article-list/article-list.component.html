@@ -1,5 +1,6 @@
-<ul class="list-group">
-  <li *ngFor="let article of articles" class="list-group-item">
+<ul class="navbar-nav">
+  <li *ngFor="let article of articles" class="nav-item" routerLinkActive="active">
     <art-article-listitem [article]="article"></art-article-listitem>
   </li>
 </ul>
+
