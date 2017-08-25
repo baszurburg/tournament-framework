@@ -2,3 +2,9 @@
   home works!
 </p>
 <p>Doe hier iets met *ngIf = loggedIn, dan tournament overview pagina, anders default pagina, met info</p>
+<div *ngIf="!auth.isAuthenticated()">
+  <art-article-detail [providedArticleId]="articleId"></art-article-detail>
+</div>
+<div *ngIf="auth.isAuthenticated()">
+  <h2>Authenticated</h2>
+</div>

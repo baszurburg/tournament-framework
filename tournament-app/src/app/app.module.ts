@@ -4,13 +4,19 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 
+import { FilterPropPipe } from './shared/pipes/filter-prop.pipe';
+
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './layout/header';
 import { HomeComponent } from './home';
 import { SandboxComponent } from './sandbox';
-import { ArticleService } from './articles';
 import { ArticleListComponent, ArticleListitemComponent } from './articles/article-list';
-import { ArticleDetailComponent } from './articles/article-detail/article-detail.component';
+import { ArticleDetailComponent } from './articles/article-detail';
+import { CallbackComponent, ProfileComponent } from './auth0';
+
+import { AuthService } from './shared/services';
+import { ArticleService } from './articles';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +26,11 @@ import { ArticleDetailComponent } from './articles/article-detail/article-detail
     SandboxComponent,
     ArticleListComponent,
     ArticleListitemComponent,
-    ArticleDetailComponent
+    ArticleDetailComponent,
+    FilterPropPipe,
+    CallbackComponent,
+    ProfileComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +38,7 @@ import { ArticleDetailComponent } from './articles/article-detail/article-detail
     HttpModule,
     AppRoutingModule
   ],
-  providers: [ArticleService],
+  providers: [AuthService, ArticleService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -16,15 +16,18 @@
           <a class="nav-link" [routerLink]="['/sandbox']">Sandbox</a>
         </li>
       </ul>
-      <art-article-list></art-article-list>
+      <art-article-list [listType]="'nav'"></art-article-list>
 
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item dropdown">
+        <li *ngIf="!auth.isAuthenticated()">
+          <button class="btn btn-sm btn-primary btn-margin"(click)="auth.login()">Log In</button>
+        </li>
+        <li class="nav-item dropdown" *ngIf="auth.isAuthenticated()">
           <a class="nav-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown" type="button" id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="true"><i class="fa fa-user"></i> Profile</a>
           <div class="dropdown-menu dropdown-default dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-            <a class="dropdown-item waves-effect waves-light" href="#">Login</a>
+            <a class="dropdown-item waves-effect waves-light" *ngIf="auth.isAuthenticated()" [routerLink]="['profile']">Profile</a>
+            <a class="dropdown-item waves-effect waves-light" *ngIf="auth.isAuthenticated()" (click)="auth.logout()">Logout</a>
             <a class="dropdown-item waves-effect waves-light" href="#">Another action</a>
-            <a class="dropdown-item waves-effect waves-light" href="#">Something else here</a>
           </div>
         </li>
       </ul>

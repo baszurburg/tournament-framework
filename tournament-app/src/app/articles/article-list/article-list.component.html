@@ -1,5 +1,5 @@
-<ul class="navbar-nav">
-  <li *ngFor="let article of articles" class="nav-item" routerLinkActive="active">
+<ul [ngClass]="{'navbar-nav' : listType==='nav'}">
+  <li *ngFor="let article of articles | filterProp:[filterValue,filterProperty]" [ngClass]="{'nav-item' : listType==='nav'}" routerLinkActive="active">
     <art-article-listitem [article]="article"></art-article-listitem>
   </li>
 </ul>
