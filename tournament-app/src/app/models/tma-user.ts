@@ -39,21 +39,20 @@ export class User {
   private _name: string;
   private _nickName: string;
   private _email: string;
+  private _role: string;
   private _picture: string;
-  private _mainAccount: boolean;
   private _dateCreated: string;
   private _dateEnd: string;
   private _authId: string;
 
-
   // Getters and setters
 
-  get mainAccount(): boolean {
-    return this._mainAccount;
+  get role(): boolean {
+    return this._role;
   }
 
-  set mainAccount(value: boolean) {
-    this._mainAccount = value;
+  set role(value: boolean) {
+    this._role = value;
   }
 
   get email(): string {
@@ -74,7 +73,7 @@ export class User {
   constructor(user: any) {
     this.name = user.name;
     this.email = user.email;
-    this.mainAccount = user.mainAccount;
+    this.role = user.role;
   }
 
 }
