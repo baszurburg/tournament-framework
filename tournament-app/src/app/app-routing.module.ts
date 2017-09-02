@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {HomeComponent} from './home';
-import {SandboxComponent} from './sandbox';
 import {ArticleDetailComponent} from './articles/article-detail';
 import {ProfileComponent, CallbackComponent} from './auth0';
 
@@ -17,7 +16,7 @@ const routes: Routes = [
   },
   {
     path: 'sandbox',
-    component: SandboxComponent
+    loadChildren: './sandbox/sandbox.module#SandboxModule'
   },
   {
     path: 'article/:id',

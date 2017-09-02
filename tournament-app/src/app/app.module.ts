@@ -1,3 +1,4 @@
+/** Modules **/
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -22,11 +23,11 @@ import { UsersService } from './users/users.service';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './layout/header';
 import { HomeComponent } from './home';
-import { SandboxComponent } from './sandbox';
 import { ArticleListComponent, ArticleListitemComponent } from './articles/article-list';
 import { ArticleDetailComponent } from './articles/article-detail';
 import { CallbackComponent, ProfileComponent } from './auth0';
-import { Cmp1Component, Cmp2Component, Cmp3Component, Cmp4Component } from './sandbox/cmps';
+
+
 
 
 @NgModule({
@@ -34,18 +35,13 @@ import { Cmp1Component, Cmp2Component, Cmp3Component, Cmp4Component } from './sa
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    SandboxComponent,
     ArticleListComponent,
     ArticleListitemComponent,
     ArticleDetailComponent,
     FilterPropPipe,
     CallbackComponent,
     ProfileComponent,
-    ProfileComponent,
-    Cmp1Component,
-    Cmp2Component,
-    Cmp3Component,
-    Cmp4Component
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
