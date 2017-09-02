@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from '../shared/services/auth.service';
+import { UsersService } from '../users/users.service';
+import {Cmp1Component} from './cmps/cmp1.component';
+import {Cmp2Component} from './cmps/cmp2.component';
+import {Cmp3Component} from './cmps/cmp3.component';
 
 @Component({
   selector: 'tma-sandbox',
@@ -8,8 +11,8 @@ import {AuthService} from '../shared/services/auth.service';
 })
 export class SandboxComponent implements OnInit {
 
-  constructor(public auth: AuthService) {
-    auth.handleAuthentication();
+  constructor(public user: UsersService) {
+    user.handleAuthentication();
   }
 
   ngOnInit() {

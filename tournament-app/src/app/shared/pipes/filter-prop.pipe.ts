@@ -16,7 +16,7 @@ export class FilterPropPipe implements PipeTransform {
       return items;
     }
 
-    return items.filter((v) => {
+    return items.filter((v: any) => {
         return v[prop] && v[prop].indexOf(filter) >= 0;
     });
   }

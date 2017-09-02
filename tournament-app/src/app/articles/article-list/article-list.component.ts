@@ -7,7 +7,7 @@ import { AppSettings } from '../../app.settings';
   selector: 'art-article-list',
   templateUrl: './article-list.component.html'
 })
-export class ArticleListComponent implements OnInit, OnDestroy, Input {
+export class ArticleListComponent implements OnInit, OnDestroy {
 
   @Input() listType: string;
 

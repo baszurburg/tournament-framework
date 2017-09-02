@@ -1,17 +1,26 @@
 <br>
 <button
   class="btn btn-primary btn-margin"
-  *ngIf="!auth.isAuthenticated()"
-  (click)="auth.login()">
+  *ngIf="!user.isAuthenticated()"
+  (click)="user.login()">
   Log In
 </button>
 
 <button
   class="btn btn-primary btn-margin"
-  *ngIf="auth.isAuthenticated()"
-  (click)="auth.logout()">
+  *ngIf="user.isAuthenticated()"
+  (click)="user.logout()">
   Log Out
 </button>
+
+<div class="cmp">
+  <tma-cmp1></tma-cmp1>
+  <tma-cmp2></tma-cmp2>
+  <tma-cmp3>
+    <tma-cmp4></tma-cmp4>
+  </tma-cmp3>
+</div>
+
 
 <div class="row">
   <div class="col-sm-6">

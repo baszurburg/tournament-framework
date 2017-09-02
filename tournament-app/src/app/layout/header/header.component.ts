@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../shared/services/auth.service';
+import {UsersService} from '../../users/users.service';
 
 @Component({
   selector: 'tma-header',
@@ -8,8 +9,8 @@ import {AuthService} from '../../shared/services/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public auth: AuthService) {
-    auth.handleAuthentication();
+  constructor(public user: UsersService) {
+    user.handleAuthentication();
   }
 
   ngOnInit() {

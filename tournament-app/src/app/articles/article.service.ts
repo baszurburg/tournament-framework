@@ -4,7 +4,6 @@ import {Observable} from 'rxjs/Observable';
 import { Article } from './article';
 import { AppSettings } from '../app.settings';
 
-
 // Import RxJs required methods
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -21,7 +20,7 @@ export class ArticleService {
 
   constructor(private http: Http) { }
 
-  getArticle(id) {
+  getArticle(id: string) {
     console.log('get article(1) - length: ' + this.articles.length);
 
     if (this.articles.length !== 0) {
@@ -42,7 +41,7 @@ export class ArticleService {
     this.fetchArticles();
   }
 
-  fetchArticle(id): void {
+  fetchArticle(id : string): void {
     console.log('fetch article(1)');
 
     this.solveCorsIssues();
@@ -65,7 +64,7 @@ export class ArticleService {
     this.solveCorsIssues();
 
     this.http.get(this.articlesUrl)
-      .map((response: Response) => response.json().articles.sort(function(a, b) {
+      .map((response: Response) => response.json().articles.sort(function(a : Article, b : Article) {
         return (a.sortOrder > b.sortOrder) ? 1 : ((b.sortOrder > a.sortOrder) ? -1 : 0);
       }))
       .subscribe(

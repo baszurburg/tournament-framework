@@ -27,7 +27,7 @@ export class AuthService {
   }
 
   public handleAuthentication(): void {
-    this.auth0.parseHash((err, authResult) => {
+    this.auth0.parseHash((err : any, authResult: any) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         window.location.hash = '';
         this.setSession(authResult);
@@ -35,19 +35,23 @@ export class AuthService {
       } else if (err) {
         this.router.navigate(['/home']);
         console.log(err);
-        alert(`Error: ${err.error}. Check the console for further details.`);
+        if (err.errorDescription && err.errorDescription.indexOf('Nonce') > -1) {
+          console.warn('Error: ${err.error}. Check the console above for further details.');
+        } else {
+          alert(`Error: ${err.error}. Check the console for further details.`);
+        }
       }
     });
   }
 
-  public getProfile(cb): void {
+  public getProfile(cb : any): void {
     const accessToken = localStorage.getItem('access_token');
     if (!accessToken) {
       throw new Error('Access token must exist to fetch profile');
     }
 
     const self = this;
-    this.auth0.client.userInfo(accessToken, (err, profile) => {
+    this.auth0.client.userInfo(accessToken, (err : string, profile: any) => {
       if (profile) {
         self.userProfile = profile;
       }
@@ -55,15 +59,12 @@ export class AuthService {
     });
   }
 
-  private setSession(authResult): void {
+  private setSession(authResult: any): void {
     // Set the time that the access token will expire at
     const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', expiresAt);
-
-    // ToDo: check here
-
   }
 
   public logout(): void {
