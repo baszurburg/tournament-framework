@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
+import {Injectable, Output} from '@angular/core';
 import { AUTH_CONFIG } from './auth0-variables';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/filter';
-//import * as auth0 from 'auth0-js';
+import { Subject }    from 'rxjs/Subject';
+// import * as auth0 from 'auth0-js';
 
 declare var auth0: any;
 
@@ -18,7 +19,12 @@ export class AuthService {
     scope: 'openid profile'
   });
 
-  userProfile: any;
+  userProfile: any = null;
+
+  // Observable string sources
+  private profileLoadedSource = new Subject<any>();
+  // Observable string stream
+  profileLoaded$ = this.profileLoadedSource.asObservable();
 
   constructor(public router: Router) {}
 
@@ -27,7 +33,7 @@ export class AuthService {
   }
 
   public handleAuthentication(): void {
-    this.auth0.parseHash((err : any, authResult: any) => {
+    this.auth0.parseHash((err: any, authResult: any) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         window.location.hash = '';
         this.setSession(authResult);
@@ -44,14 +50,14 @@ export class AuthService {
     });
   }
 
-  public getProfile(cb : any): void {
+  public getProfile(cb: any): void {
     const accessToken = localStorage.getItem('access_token');
     if (!accessToken) {
       throw new Error('Access token must exist to fetch profile');
     }
 
     const self = this;
-    this.auth0.client.userInfo(accessToken, (err : string, profile: any) => {
+    this.auth0.client.userInfo(accessToken, (err: string, profile: any) => {
       if (profile) {
         self.userProfile = profile;
       }
@@ -65,6 +71,13 @@ export class AuthService {
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', expiresAt);
+
+
+    this.getProfile((err: any, profile : any) => {
+      // do here a broadcast
+      this.profileLoadedSource.next(profile);
+      console.log('profileLoadedSubject sent');
+    });
   }
 
   public logout(): void {
@@ -72,6 +85,7 @@ export class AuthService {
     localStorage.removeItem('access_token');
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
+    this.userProfile = null;
     // Go back to the home route
     this.router.navigate(['/']);
   }

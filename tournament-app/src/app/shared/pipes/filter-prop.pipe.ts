@@ -9,8 +9,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class FilterPropPipe implements PipeTransform {
 
   transform(items: any, args?: string[]): any {
-     let filter = args[0];
-     let prop = args[1];
+     const filter = args[0];
+     const prop = args[1];
 
     if (!items || !filter) {
       return items;

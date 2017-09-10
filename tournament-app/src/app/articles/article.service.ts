@@ -1,8 +1,8 @@
+import { AppSettings } from '../app.settings';
 import { Injectable, EventEmitter } from '@angular/core';
 import { Http, Response, Headers} from '@angular/http';
-import {Observable} from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 import { Article } from './article';
-import { AppSettings } from '../app.settings';
 
 // Import RxJs required methods
 import 'rxjs/add/operator/map';
@@ -41,7 +41,7 @@ export class ArticleService {
     this.fetchArticles();
   }
 
-  fetchArticle(id : string): void {
+  fetchArticle(id: string): void {
     console.log('fetch article(1)');
 
     this.solveCorsIssues();
@@ -64,7 +64,7 @@ export class ArticleService {
     this.solveCorsIssues();
 
     this.http.get(this.articlesUrl)
-      .map((response: Response) => response.json().articles.sort(function(a : Article, b : Article) {
+      .map((response: Response) => response.json().articles.sort(function(a: Article, b: Article) {
         return (a.sortOrder > b.sortOrder) ? 1 : ((b.sortOrder > a.sortOrder) ? -1 : 0);
       }))
       .subscribe(

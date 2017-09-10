@@ -9,7 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 /**NgRx Store */
 import { StoreModule } from '@ngrx/store';
-import { reducers } from './reducers'
+import { reducers } from './reducers';
 
 /**Pipes */
 import { FilterPropPipe } from './shared/pipes/filter-prop.pipe';
@@ -26,9 +26,6 @@ import { HomeComponent } from './home';
 import { ArticleListComponent, ArticleListitemComponent } from './articles/article-list';
 import { ArticleDetailComponent } from './articles/article-detail';
 import { CallbackComponent, ProfileComponent } from './auth0';
-
-
-
 
 @NgModule({
   declarations: [

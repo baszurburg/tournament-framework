@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
       </p>
     </div>
   `,
-  styles: [".cmp {border: 3px solid yellow;}"]
+  styles: ['.cmp {border: 3px solid yellow;}']
 })
 export class Cmp2Component implements OnInit {
 

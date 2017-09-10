@@ -1,6 +1,6 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
 import { AppSettings } from '../app.settings';
-import {AuthService} from '../shared/services/auth.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AuthService } from '../shared/services/auth.service';
 
 @Component({
   selector: 'tma-home',
