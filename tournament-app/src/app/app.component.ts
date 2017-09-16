@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {AuthService} from './shared/services/auth.service';
+import {UsersService} from './users';
 
 @Component({
   selector: 'tma-root',
@@ -9,8 +9,8 @@ import {AuthService} from './shared/services/auth.service';
 export class AppComponent {
   title = 'tma works!';
 
-  constructor(public auth: AuthService) {
-    auth.handleAuthentication();
+  constructor(public user: UsersService) {
+    user.handleAuthentication();
   }
 
 }

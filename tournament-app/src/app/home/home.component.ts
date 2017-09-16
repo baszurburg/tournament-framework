@@ -1,6 +1,6 @@
 import { AppSettings } from '../app.settings';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AuthService } from '../shared/services/auth.service';
+import { UsersService } from '../users';
 
 @Component({
   selector: 'tma-home',
@@ -11,8 +11,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   articleId: string = AppSettings.HOME_CONTENT;
 
-  constructor(public auth: AuthService) {
-    auth.handleAuthentication();
+  constructor(public user: UsersService) {
+    user.handleAuthentication();
   }
 
   ngOnInit() {

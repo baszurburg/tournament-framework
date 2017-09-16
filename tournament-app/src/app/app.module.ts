@@ -15,7 +15,7 @@ import { reducers } from './reducers';
 import { FilterPropPipe } from './shared/pipes/filter-prop.pipe';
 
 /**Services */
-import { AuthService } from './shared/services';
+import { AuthService } from './users/auth0';
 import { ArticleService } from './articles';
 import { UsersService } from './users/users.service';
 
@@ -25,7 +25,8 @@ import { HeaderComponent } from './layout/header';
 import { HomeComponent } from './home';
 import { ArticleListComponent, ArticleListitemComponent } from './articles/article-list';
 import { ArticleDetailComponent } from './articles/article-detail';
-import { CallbackComponent, ProfileComponent } from './auth0';
+import { ProfileComponent } from './users';
+import { CallbackComponent } from './users/auth0';
 
 @NgModule({
   declarations: [

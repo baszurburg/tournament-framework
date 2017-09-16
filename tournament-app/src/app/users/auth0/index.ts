@@ -1,2 +1,2 @@
-export { ProfileComponent } from './profile/profile.component';
 export { CallbackComponent } from './callback/callback.component';
+export { AuthService } from './auth.service';

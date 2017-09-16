@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {HomeComponent} from './home';
 import {ArticleDetailComponent} from './articles/article-detail';
-import {ProfileComponent, CallbackComponent} from './auth0';
+import {ProfileComponent} from './users';
+import {CallbackComponent} from './users/auth0';
 
 const routes: Routes = [
   {

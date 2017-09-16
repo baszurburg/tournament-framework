@@ -4,7 +4,7 @@ import { User } from './user';
 import { Observable } from 'rxjs/Observable';
 import {Subscription} from 'rxjs/Subscription';
 
-import { AuthService} from '../shared/services/auth.service';
+import { AuthService} from './auth0/auth.service';
 
 import * as fromUsers from './reducers/users';
 
@@ -27,7 +27,9 @@ export class UsersService implements OnInit, OnDestroy {
     this.messageSubscription = auth.profileLoaded$.subscribe(
       profile => {
         this.authProfile = profile;
-        console.log('profile received');
+
+        //go create a user, but first check if the code gets here
+
       });
   }
 
