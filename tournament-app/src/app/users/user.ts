@@ -5,16 +5,25 @@ const enum Roles {
   referee
 }
 
+interface IName  {
+  first: string,
+  last: string
+}
+
 export class User {
   id: string;
-  name: string;
+  userName: string;
+  name: IName;
   nickName: string;
   email: string;
   roles: string[];
   picture: string;
+  active: boolean;
   dateCreated: string;
   dateEnd: string;
-  authId: string;
+  sub: string;
+  type: string;
+  isAdmin: boolean;
 
   // Getters and setters
 

@@ -19,6 +19,7 @@
  */
 
 var keystone = require('keystone');
+var bodyParser = require('body-parser');
 var middleware = require('./middleware');
 var importRoutes = keystone.importer(__dirname);
 
@@ -31,7 +32,8 @@ keystone.pre('render', middleware.flashMessages);
 
 // Import Route Controllers
 var routes = {
-	views: importRoutes('./views')
+	views: importRoutes('./views'),
+	api: importRoutes('./api')
 };
 
 // Setup Route Bindings
@@ -59,7 +61,12 @@ exports = module.exports = function (app) {
 	app.get('/article/:article', routes.views.article);
 	app.get('/gallery', routes.views.gallery);
 	app.all('/contact', routes.views.contact);
-
+	
+	// API - App
+	app.all('/api*', keystone.middleware.api);
+	app.all('/api/app/check-user', routes.api.app['check-user']);
+	
+	
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
 	// app.get('/protected', middleware.requireUser, routes.views.protected);
 
@@ -74,8 +81,10 @@ exports = module.exports = function (app) {
 			show : ['email', 'isAdmin', 'name'],
 			filter : { isAdmin: false }
 		}
-	}).before({
-		User: middleware.requireUser
 	}).start();
+	
+	// .before({
+	//   User: middleware.requireUser
+    // })
 	
 };
