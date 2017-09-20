@@ -9,7 +9,6 @@ import {UsersService} from '../../users/users.service';
 export class HeaderComponent implements OnInit {
 
   constructor(public user: UsersService) {
-    user.handleAuthentication();
   }
 
   ngOnInit() {

@@ -1,8 +1,10 @@
 <div class="panel panel-default profile-area">
+
   <div class="panel-heading">
     <h3>Profile</h3>
   </div>
-  <div class="panel-body">
+
+  <div class="panel-body" *ngIf="profile">
     <img src="{{profile?.picture}}" class="avatar" alt="avatar">
     <div>
       <label><i class="glyphicon glyphicon-user"></i> Nickname</label>
@@ -10,4 +12,5 @@
     </div>
     <pre class="full-profile">{{ profile | json }}</pre>
   </div>
+
 </div>

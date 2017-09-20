@@ -1,17 +1,9 @@
-const enum Roles {
-  default,
-  owner,
-  manager,
-  referee
-}
-
 interface IName  {
   first: string,
   last: string
 }
 
 export class User {
-  id: string;
   userName: string;
   name: IName;
   nickName: string;
@@ -28,9 +20,18 @@ export class User {
   // Getters and setters
 
   constructor(user: any) {
-    this.name = user.name;
-    this.email = user.email;
-    this.roles = user.role;
+    this.name = user.name || null;
+    this.userName = user.userName || null;
+    this.nickName = user.nickname || null;
+    this.email = user.email || null;
+    this.roles = user.roles || null;
+    this.picture = user.picture || null;
+    this.active = user.active || true;
+    this.dateCreated = user.dateCreated || Date.now;
+    this.dateEnd = user.dateEnd || null;
+    this.sub = user.sub || null;
+    this.type = user.type || 'api';
+    this.isAdmin = user.isAdmin || false;
   }
 
 }

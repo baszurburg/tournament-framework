@@ -1,6 +1,6 @@
 import { AppSettings } from '../app.settings';
 import { Injectable, EventEmitter } from '@angular/core';
-import { Http, Response, Headers} from '@angular/http';
+import { Http, Response} from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Article } from './article';
 
@@ -21,7 +21,6 @@ export class ArticleService {
   constructor(private http: Http) { }
 
   getArticle(id: string) {
-    console.log('get article(1) - length: ' + this.articles.length);
 
     if (this.articles.length !== 0) {
       return this.articles.filter(
