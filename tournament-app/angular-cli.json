@@ -18,7 +18,7 @@
       "tsconfig": "tsconfig.json",
       "prefix": "tma",
       "styles": [
-        "styles.sass"
+        "styles.scss"
       ],
       "scripts": [],
       "environments": {

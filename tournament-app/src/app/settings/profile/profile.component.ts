@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {UsersService} from '../users.service';
+import {UsersService} from '../../users';
 
 @Component({
   selector: 'app-profile',
@@ -17,9 +17,7 @@ export class ProfileComponent implements OnInit {
       if (this.user.userProfile) {
         this.profile = this.user.userProfile;
       } else {
-        this.user.getProfile((err: any, profile : any) => {
-          this.profile = profile;
-        });
+        this.profile = this.user.getProfile();
       }
     }
   }

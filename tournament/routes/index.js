@@ -43,15 +43,19 @@ exports = module.exports = function (app) {
 	
 	// Allow cross-domain requests (api only)
 	console.log('------------------------------------------------');
-	console.log('Notice: Enabling CORS for development.');
+	console.log('Notice: Enabling CORS (for development.)');
 	console.log('------------------------------------------------');
-	app.all('/api/*', function (req, res, next) {
+
+	// API - App
+	app.all('/api*', keystone.middleware.api);
+	app.all('/api*', keystone.middleware.cors);
+
+	app.all('/api*', function (req, res, next) {
 		res.header('Access-Control-Allow-Origin', '*');
-		res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-		res.header('Access-Control-Allow-Headers', '*');
+		res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
+		res.header('Access-Control-Allow-Headers', 'Content-Type, Access-Control-Allow-Headers, Access-Control-Allow-Method, Authorization, X-Requested-With, X-Powered-By');
 		next();
 	});
-
 	
 	// Views
 	app.get('/', routes.views.index);
@@ -61,11 +65,10 @@ exports = module.exports = function (app) {
 	app.get('/article/:article', routes.views.article);
 	app.get('/gallery', routes.views.gallery);
 	app.all('/contact', routes.views.contact);
-	
+
 	// API - App
-	app.all('/api*', keystone.middleware.api);
 	app.all('/api/app/check-user', routes.api.app['check-user']);
-	
+	app.all('/api/app/create-user', routes.api.app['create-user']);
 	
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
 	// app.get('/protected', middleware.requireUser, routes.views.protected);
@@ -78,10 +81,12 @@ exports = module.exports = function (app) {
 		Article: true,
 		PostCategory: true,
 		User: {
-			show : ['email', 'isAdmin', 'name'],
 			filter : { isAdmin: false }
 		}
 	}).start();
+
+	// 			show : ['email', 'isAdmin', 'name'],
+	
 	
 	// .before({
 	//   User: middleware.requireUser

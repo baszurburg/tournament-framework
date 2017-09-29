@@ -10,10 +10,17 @@ exports = module.exports = function(req, res) {
 	var locals = {
 		sub: req.body.sub,
 		authUser: req.body.authUser,
-		form: req.body.form,
 		existingUser: false
-	}
+	};
 
+	if (req.method !== 'POST') {
+		return res.apiResponse({
+			success: false,
+			user: null,
+			message: 'Request method not as expected'
+		});
+	}
+	
 	if (!req.body.sub ) {
 		return res.apiResponse({ 
 			success: false,

@@ -58,24 +58,24 @@ export class UsersService implements OnInit, OnDestroy {
   }
 
   public logout(): void {
-    this.userProfile = null;
+    this.clearUserdata();
     this.auth.logout();
   }
 
   public isAuthenticated(): boolean {
+    if (!this.auth.isAuthenticated()){
+      this.clearUserdata();
+    }
     return this.auth.isAuthenticated();
   }
 
-  public getProfile(cb: any) {
+  public getProfile() {
     if (this.userProfile) {
       return this.userProfile;
     }
-    this.auth.getProfile((err: any, profile: any) => {
-      this.authProfile = profile;
-      // To Do: get user profile from keystome
-      cb(err, profile);
-    });
-  }
+    return this.getUserLocalStorage();
+  };
+
 
   private createUserFromAuth(): User {
     let newUser:any = {};
@@ -87,7 +87,7 @@ export class UsersService implements OnInit, OnDestroy {
 
     newUser.name = name || null;
     newUser.userName = this.authProfile.name || null;
-    newUser.nickName = this.authProfile.nickname || null;
+    newUser.nickName = this.authProfile.nickname || this.authProfile.given_name || this.authProfile.name || null;
     if (this.authProfile.email) {
       newUser.email = this.authProfile.email
     } else if (this.validateEmail(this.authProfile.name)) {
@@ -102,13 +102,11 @@ export class UsersService implements OnInit, OnDestroy {
     newUser.dateCreated = Date.now();
     newUser.dateEnd = null;
     newUser.sub = this.authProfile.sub || null;
-
     if (this.authProfile.sub.indexOf('google') > -1 ){
       type = 'google';
     } else if (this.authProfile.sub.indexOf('auth0') > -1 ) {
       type = 'auth0';
     }
-
     newUser.type = type;
     newUser.isAdmin = false;
 
@@ -118,6 +116,21 @@ export class UsersService implements OnInit, OnDestroy {
   private validateEmail(email: any): boolean {
     const re: any = /(.+)@(.+){2,}\.(.+){2,}/;
     return re.test(email);
+  }
+
+  private setUserLocalStorage(userProfile: User) : void {
+    localStorage.setItem('userProfile', JSON.stringify(userProfile));
+  }
+
+  private getUserLocalStorage() : User {
+    this.userProfile = new User(JSON.parse(localStorage.getItem('userProfile')));
+    console.log('getUserLocalStorage ');
+    return this.userProfile;
+  }
+
+  private clearUserdata() {
+    this.userProfile = null;
+    localStorage.removeItem('userProfile');
   }
 
   /****************************************************
@@ -132,16 +145,14 @@ export class UsersService implements OnInit, OnDestroy {
     let data: any = {
       sub: sub
     };
-
-    // To Do: The sub is not passed correctly? because a result is returned
-
     this.http.post(this.checkUserUrl, data)
       .map((response: Response) => response.json())
       .subscribe(
         (data) => {
           if (data.success) {
             if (data.user) {
-              this.userProfile = data.user
+              this.userProfile = data.user;
+              this.setUserLocalStorage(this.userProfile);
             } else {
                 this.userProfile = this.createUserFromAuth();
                 this.createDBUser(this.userProfile);
@@ -162,7 +173,7 @@ export class UsersService implements OnInit, OnDestroy {
       .map((response: Response) => response.json())
       .subscribe(
         (data) => {
-          console.log(data);
+          this.setUserLocalStorage(this.userProfile);
         },
         error => console.warn('Error: UserService - createUser ' + error)
       );

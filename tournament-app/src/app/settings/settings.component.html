@@ -1,0 +1,23 @@
+
+<!-- Nav tabs -->
+<ul class="nav nav-tabs nav-justified grey lighten-1">
+  <li class="nav-item">
+    <a class="nav-link" [routerLink]="['tournaments']" routerLinkActive="active" role="tab">Tournaments</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" [routerLink]="['content']" routerLinkActive="active" role="tab">Content</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" [routerLink]="['profile']" routerLinkActive="active" role="tab">Profile</a>
+  </li>
+</ul>
+<!-- Tab panels -->
+<div class="tab-content">
+
+  <!--Panel 1-->
+  <div class="tab-pane show active" role="tabpanel">
+    <router-outlet></router-outlet>
+  </div>
+  <!--/.Panel 1-->
+
+</div>

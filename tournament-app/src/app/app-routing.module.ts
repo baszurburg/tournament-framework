@@ -2,8 +2,10 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {HomeComponent} from './home';
 import {ArticleDetailComponent} from './articles/article-detail';
-import {ProfileComponent} from './users';
 import {CallbackComponent} from './users/auth0';
+import {UserAuthenticatedGuard} from './users';
+import {SettingsComponent, ProfileComponent} from './settings';
+import {SETTINGS_ROUTES} from './settings/settings.routes';
 
 const routes: Routes = [
   {
@@ -24,8 +26,16 @@ const routes: Routes = [
     component: ArticleDetailComponent
   },
   {
+    path: 'settings',
+    component: SettingsComponent,
+    canActivate: [UserAuthenticatedGuard],
+    children: SETTINGS_ROUTES
+
+  },
+  {
     path: 'profile',
-    component: ProfileComponent
+    component: ProfileComponent,
+    canActivate: [UserAuthenticatedGuard]
   },
   {
     path: 'callback',

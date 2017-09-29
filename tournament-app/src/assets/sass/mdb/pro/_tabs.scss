@@ -148,7 +148,7 @@
 }
 
 .classic-tabs {
-    @include flexbox()
+    @include flexbox();
     white-space: nowrap;
     overflow-x:auto;
     @media (min-width: 62rem) {
@@ -175,7 +175,7 @@
         @media (min-width: 62em) {
             &:first-child {
                 margin-left:56px;
-            }           
+            }
         }
     }
     &.tabs-grey {
