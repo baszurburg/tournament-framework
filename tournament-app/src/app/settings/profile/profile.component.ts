@@ -10,9 +10,7 @@ export class ProfileComponent implements OnInit {
 
   profile: any = null;
 
-  constructor(public user: UsersService) { }
-
-  ngOnInit() {
+  constructor(public user: UsersService) {
     if (this.user.isAuthenticated()) {
       if (this.user.userProfile) {
         this.profile = this.user.userProfile;
@@ -20,6 +18,10 @@ export class ProfileComponent implements OnInit {
         this.profile = this.user.getProfile();
       }
     }
+  }
+
+  ngOnInit() {
+
   }
 
 }

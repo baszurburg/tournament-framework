@@ -1,3 +1,45 @@
-<p>
-  profile-edit works!
-</p>
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  <p class="h1 text-center mb-4">Edit Profile</p>
+
+  <div class="md-form">
+    <i class="fa fa-user prefix grey-text"></i>
+    <input type="text" id="userName" class="form-control" formControlName="userName">
+    <label for="userName">Username</label>
+  </div>
+
+  <div class="md-form">
+    <i class="fa fa-envelope prefix grey-text"></i>
+    <input type="text" id="email" class="form-control" formControlName="email">
+    <label for="Email">Email</label>
+  </div>
+
+  <div class="md-form">
+    <i class="fa fa-lock prefix grey-text"></i>
+    <input type="text" id="nickName" class="form-control" formControlName="nickName">
+    <label for="nickName">Nickname</label>
+  </div>
+
+  <p>Also do</p>
+  <ul>
+    <li>Image</li>
+    <li>Subscription (via popup)</li>
+    <li>Roles (via popup)</li>
+    <li>...</li>
+    <li></li>
+  </ul>
+
+  <p>When Admin, allow to </p>
+  <ul>
+    <li>Deactivate user</li>
+    <li>Set isAdmin</li>
+    <li>...</li>
+    <li></li>
+  </ul>
+
+
+
+  <div class="text-center">
+    <button type="submit" class="btn btn-deep-orange">Save</button>
+  </div>
+
+</form>
