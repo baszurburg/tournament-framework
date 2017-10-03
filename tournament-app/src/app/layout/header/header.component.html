@@ -24,11 +24,12 @@
           <button class="btn btn-sm btn-primary btn-margin"(click)="user.login()">Log In</button>
         </li>
 
-        <li class="nav-item dropdown" tma-dropdown *ngIf="user.isAuthenticated()">
-          <a class="nav-link dropdown-toggle waves-effect waves-light" type="button" id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> Settings</a>
-          <div class="dropdown-menu dropdown-dark dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+        <li class="nav-item dropdown" ngbDropdown *ngIf="user.isAuthenticated()">
+          <a class="nav-link dropdown-toggle waves-effect waves-light" ngbDropdownToggle type="button" id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cog"></i> Settings</a>
+          <div class="dropdown-menu dropdown-dark dropdown-menu-right" ngbDropdownMenu aria-labelledby="navbarDropdownMenuLink" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
             <a class="dropdown-item waves-effect waves-light" *ngIf="user.isAuthenticated()" [routerLink]="['settings']">Settings</a>
             <a class="dropdown-item waves-effect waves-light" *ngIf="user.isAuthenticated()" [routerLink]="['settings/profile']">Profile</a>
+            <div class="dropdown-divider"></div>
             <a class="dropdown-item waves-effect waves-light" *ngIf="user.isAuthenticated()" (click)="user.logout()">Logout</a>
           </div>
         </li>
