@@ -6,7 +6,7 @@
       <div class="card testimonial-card">
 
         <!--Bacground color-->
-        <div class="card-up blue lighten-1"></div>
+        <div class="card-up blue-gradient"></div>
 
         <!--Avatar-->
         <div *ngIf="profile.picture" class="avatar"><img src="{{profile?.picture}}" class="rounded-circle"></div>
@@ -58,7 +58,7 @@
                 </tbody>
               </table>
               <div class="card-footer">
-                <a href="#" class="btn blue-gradient">Edit Profile</a>
+                <a [routerLink]="['edit']" class="btn blue-gradient">Edit Profile</a>
               </div>
             </div>
           </div>
@@ -66,9 +66,19 @@
 
       </div>
 
-      <div class="profile-area">
-        <h3 class="nickname">Profile</h3>
-        <pre class="full-profile">{{ profile | json }}</pre>
+
+      <p>
+        <button type="button" class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed"
+                [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+          Raw profile
+        </button>
+      </p>
+      <div id="collapseExample" [ngbCollapse]="!isCollapsed">
+        <div class="profile-area">
+          <h3 class="nickname">Profile</h3>
+          <pre class="full-profile">{{ profile | json }}</pre>
+        </div>
+
       </div>
 
     </div>
